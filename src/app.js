@@ -11,6 +11,13 @@ const requestRouter = require("./routes/request");
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "http://13.60.188.185"
+  //"https://yourdomain.com",
+];
 // app.use(cors({
 //   origin:"http://localhost:5173",
   
@@ -18,10 +25,21 @@ const app = express();
 //   with
 // }))
 
-app.use(cors({
- origin:"http://localhost:5173",
- credentials: true
-}))
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like Postman, curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
