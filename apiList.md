@@ -45,3 +45,12 @@ Status : ignored , interested , accepted , rejected
 - write code with proper validation for POST /reuests
 - Thought process - POST vs GET
 - read about ref and populate
+
+/feed?page=1&limit=10 => first 10 users 1-10
+
+/feed?page=2&limit=10 > 11- 20
+
+-- mongo methods 
+skip(0)  --> skipping 0 users
+ &
+limit(10) --> limiting 10 users

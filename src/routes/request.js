@@ -4,6 +4,8 @@ const connectionRequestModel = require("../model/connectionRequest");
 const { User } = require("../model/userSchema");
 const requestRouter = express.Router();
 
+
+// for left and right swipe
 requestRouter.post(
   "/request/send/:status/:toUserId",
   userAuth,
@@ -52,6 +54,7 @@ requestRouter.post(
       res.status(201).json({
         message: "connection request sent success",
         data: requestData,
+        success:true
       });
     } catch (error) {
       res.status(400).send({ message: error.message, success: false });
@@ -85,7 +88,7 @@ requestRouter.post("/request/review/:status/:requestId",userAuth, async (req, re
     }
 connectionRequest.status = status
      const data = await connectionRequest.save()
-     res.json({message:"Connection request "+ status , data})
+     res.json({message:"Connection request "+ status , data,success:true })
     } catch (error) {
       res.status(400).send({ message: error.message, success: false });
     }

@@ -22,9 +22,9 @@ authRouter.post("/signup", async (req, res, next) => {
       password: passwordHash,
     });
     await user.save();
-    res.status(201).send({ message: "user added successfully", user });
+    res.status(201).send({ message: "user added successfully", user ,success:true});
   } catch (e) {
-    res.status(400).send("ERROR : " + e.message);
+    res.status(400).send(  { message: e.message, success:false});
   }
 });
 
@@ -45,7 +45,7 @@ authRouter.post("/login", async (req, res) => {
 
       // Add the token to cookie and send to response back to the user
       res.cookie("token", token);
-      res.send({ message: "Login Succesful!!", success: true });
+      res.send({ message: "Login Succesful!!", success: true ,data:user});
     } else {
       res
         .status(400)
