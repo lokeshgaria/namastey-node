@@ -15,8 +15,9 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
-  "http://13.60.188.185"
-  //"https://yourdomain.com",
+  "http://13.60.188.185",
+  "https://lovnti.in",
+  
 ];
 // app.use(cors({
 //   origin:"http://localhost:5173",
