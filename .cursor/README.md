@@ -21,7 +21,7 @@ This is a **Tinder-like dating/networking app backend for developers** called "D
 | **validator** | Input validation |
 | **date-fns** | Date manipulation |
 
----
+--- 
 
 ## Project Structure
 
