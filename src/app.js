@@ -7,7 +7,7 @@ const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
-
+ require("./utils/cronjob");
 
 const PORT = process.env.PORT;
 const app = express();
@@ -19,6 +19,7 @@ const allowedOrigins = [
   "https://lovnti.in",
   
 ];
+ 
  
 app.use(
   cors({
