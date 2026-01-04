@@ -6,13 +6,14 @@ let isConnected = false;
 async function connectMongo() {
   if (isConnected) return mongoose.connection;
 
-  const DB_USER = process.env.DB_USER || "lokeshgaria8811";                 // put in .env
-  const DB_PASS = encodeURIComponent(process.env.DB_PASS || "gTSmd2zxHuhFsqDf"  ); // encode if special chars
-  const DB_NAME = process.env.DB_NAME || "helloworld";
+  // const DB_USER = process.env.DB_USER || "lokeshgaria8811";                 // put in .env
+  // const DB_PASS = encodeURIComponent(process.env.DB_PASS || "gTSmd2zxHuhFsqDf"  ); // encode if special chars
+  const DB_NAME = process.env.DB_NAME;
  
-  const MONGO_URI =
-    process.env.MONGO_URI ||
-    `mongodb+srv://${DB_USER}:${DB_PASS}@node-by-akshay.wxvdczb.mongodb.net/`;
+  const MONGO_URI = 
+    process.env.MONGO_URI 
+    // ||
+    // `mongodb+srv://${DB_USER}:${DB_PASS}@node-by-akshay.wxvdczb.mongodb.net/`;
  
   mongoose.set("strictQuery", true);
   // optional: fail fast instead of buffering ops

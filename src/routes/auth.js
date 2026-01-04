@@ -3,6 +3,7 @@ const { validateSingupData } = require("../utils/validation");
 const { User } = require("../model/userSchema");
 const authRouter = express.Router();
 const bcrypt = require("bcrypt");
+const { run } = require("../utils/sendEmail");
 const { ERRORS } = require("../utils/constants/Errors/index");
  
 
@@ -42,7 +43,9 @@ authRouter.post("/login", async (req, res) => {
     if (isPasswordValid) {
       // Create a jwt token
       const token = await user.getJWT();
+    //  const emailRes = await run( "Login Success! 👌",`Hey ${user.firstName} ${user.lastName} , you have logged in successfully`);
 
+    //   console.log("emailRes_", emailRes);
       // Add the token to cookie and send to response back to the user
       res.cookie("token", token);
       res.send({ message: "Login Succesful!!", success: true ,data:user});

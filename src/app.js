@@ -9,7 +9,7 @@ const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 const app = express();
 
 const allowedOrigins = [
@@ -19,13 +19,7 @@ const allowedOrigins = [
   "https://lovnti.in",
   
 ];
-// app.use(cors({
-//   origin:"http://localhost:5173",
-  
-// },{
-//   with
-// }))
-
+ 
 app.use(
   cors({
     origin: function (origin, callback) {
