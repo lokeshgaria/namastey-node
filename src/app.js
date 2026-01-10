@@ -7,7 +7,8 @@ const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
-
+const razorRouter = require("./routes/upgrade")
+//  require("./utils/cronjob");
 
 const PORT = process.env.PORT;
 const app = express();
@@ -19,6 +20,15 @@ const allowedOrigins = [
   "https://lovnti.in",
   
 ];
+
+ // Add this BEFORE app.use(express.json())
+app.use(
+  express.json({
+    verify: (req, res, buf) => {
+      req.rawBody = buf.toString(); // We save the original raw body here
+    },
+  })
+);
  
 app.use(
   cors({
@@ -43,6 +53,7 @@ app.use("/",authRouter)
 app.use("/",userRouter)
 app.use("/",profileRouter)
 app.use("/",requestRouter)
+app.use("/",razorRouter)
 
 app.use((err, _req, res, _next) => {
   console.error(err);
