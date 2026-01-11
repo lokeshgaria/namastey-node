@@ -1,5 +1,6 @@
 const express = require("express");
 const { connectMongo } = require("./config/database");
+const {createServer} = require('http')
 const cors = require('cors')
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
@@ -7,12 +8,13 @@ const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
+const chatRouter = require("./routes/chat");
 const razorRouter = require("./routes/upgrade")
 //  require("./utils/cronjob");
-
+const {initializeSocket} = require('./utils/socket')
 const PORT = process.env.PORT;
 const app = express();
-
+const server = createServer(app)
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
@@ -20,6 +22,8 @@ const allowedOrigins = [
   "https://lovnti.in",
   
 ];
+
+initializeSocket(server)
 
  // Add this BEFORE app.use(express.json())
 app.use(
@@ -29,7 +33,8 @@ app.use(
     },
   })
 );
- 
+
+
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -54,6 +59,7 @@ app.use("/",userRouter)
 app.use("/",profileRouter)
 app.use("/",requestRouter)
 app.use("/",razorRouter)
+app.use("/",chatRouter)
 
 app.use((err, _req, res, _next) => {
   console.error(err);
@@ -62,7 +68,7 @@ app.use((err, _req, res, _next) => {
 
 connectMongo()
   .then(() => {
-    app.listen(PORT, () =>
+    server.listen(PORT, () =>
       console.log(`🚀 server started on http://localhost:${PORT}`)
     );
   })
