@@ -54,3 +54,52 @@ Status : ignored , interested , accepted , rejected
 skip(0)  --> skipping 0 users
  &
 limit(10) --> limiting 10 users
+
+## NEW STRUCTURE 
+src/
+├── api/                           # Everything HTTP-related
+│   ├── controllers/               # Handle HTTP requests/responses
+│   │   ├── ConnectionController.js
+│   │   ├── UserController.js
+│   │   └── AuthController.js
+│   ├── routes/                    # Define URL routes only
+│   │   ├── connection.routes.js
+│   │   ├── user.routes.js
+│   │   └── auth.routes.js
+│   ├── middlewares/              # Express middlewares
+│   │   ├── auth.js
+│   │   ├── validation.js
+│   │   └── errorHandler.js
+│   └── validators/               # Input validation schemas
+│       └── connectionValidator.js
+│
+├── core/                          # Business logic (framework-agnostic)
+│   ├── services/                  # Business logic layer
+│   │   ├── ConnectionService.js
+│   │   ├── UserService.js
+│   │   └── AuthService.js
+│   ├── repositories/              # Database operations only
+│   │   ├── ConnectionRepository.js
+│   │   ├── UserRepository.js
+│   │   └── BaseRepository.js
+│   └── entities/                  # Domain models (optional)
+│       └── User.js
+│
+├── infrastructure/                # External services
+│   ├── database/
+│   │   └── mongoose.js
+│   ├── cache/
+│   │   └── redis.js
+│   ├── email/
+│   │   └── sesClient.js
+│   └── storage/
+│       └── s3Client.js
+│
+├── config/                        # Configuration
+│   ├── container.js               # Dependency injection
+│   └── constants.js
+│
+├── utils/                         # Helper functions
+│   └── helpers.js
+│
+└── app.js                         # Application setup
