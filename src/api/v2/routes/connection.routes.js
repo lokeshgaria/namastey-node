@@ -8,8 +8,8 @@ const router = express.Router();
  */
 function setupConnectionRoutes(connectionController, userAuth) {
   // Send connection request (swipe)
-    console.log('Setting up routes with controller:', connectionController);
-  console.log('userAuth middleware:', typeof userAuth);
+  
+ 
   
   router.post(
     '/send/:status/:toUserId',

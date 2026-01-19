@@ -50,3 +50,31 @@ const plans = {
 module.exports = {
   plans,
 };
+
+
+// NEW ORDER CONSTANTS HERE 
+// module.exports = {
+//   PLANS: {
+//     FREE: {
+//       name: 'free',
+//       price: 0,
+//       features: ['50 swipes/day', '1 super like/day']
+//     },
+//     PLUS: {
+//       name: 'plus',
+//       price: 499,  // INR
+//       features: ['Unlimited swipes', '5 super likes/day', 'See who liked you']
+//     },
+//     PREMIUM: {
+//       name: 'premium',
+//       price: 999,  // INR
+//       features: ['Everything in Plus', 'Profile boost', 'Rewind', 'Incognito mode']
+//     }
+//   },
+  
+//   ORDER_STATUS: {
+//     CREATED: 'created',
+//     PAID: 'paid',
+//     FAILED: 'failed'
+//   }
+// };

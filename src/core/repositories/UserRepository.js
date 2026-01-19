@@ -56,14 +56,14 @@ class UserRepository extends BaseRepository {
    * @param {String} userId 
    * @param {Object} updateData 
    */
-  async updateProfile(userId, updateData) {
+  async updateById(userId, updateData, options = { new: true }) {
     // Remove fields that shouldn't be updated
     const { password, email, _id, ...safeData } = updateData;
 
     return await this.model.findByIdAndUpdate(
       userId,
       safeData,
-      { new: true, runValidators: true }
+      options
     );
   }
 

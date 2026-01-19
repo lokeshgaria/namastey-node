@@ -5,7 +5,7 @@ const { createServer } = require('http');    // for handling sockets for chat v1
 const cors = require('cors');  // to enable cors v1
 const cookieParser = require("cookie-parser"); // to handle cookies v1
 require("dotenv").config();  // to use envs globally v1 
-
+const setupV2Routes = require('./api/v2');
 // Models
 const {User} = require('./model/userSchema'); // user model import v1
 const ConnectionRequest = require('./model/connectionRequest'); // connectionRequest model import v1
@@ -18,8 +18,8 @@ const { userAuth } = require('./middlewares/auth');  // to authenticate user tok
 const errorHandler = require('./api/middlewares/errorHandler');  // to handle errors gloablly v2
 
 // NEW Route setups
-const setupConnectionRoutes = require('./api/routes/connection.routes'); // to handle connection apis v2
-const setupUserRoutes = require('./api/routes/user.routes');  // to handle user related apis v2
+const setupConnectionRoutes = require('./api/v2/routes/connection.routes'); // to handle connection apis v2
+const setupUserRoutes = require('./api/v2/routes/user.routes');  // to handle user related apis v2
 
 // OLD Routes (backup - we'll remove these later)
 const authRouter = require("./routes/auth");   // v1
@@ -87,21 +87,23 @@ console.log('container',container)
 // ============================================
 // NEW ROUTES (Clean Architecture) v2
 // ============================================
-app.use(
-  '/api/v2/request', 
-  setupConnectionRoutes(
-    container.get('connectionController'),
-    userAuth
-  )
-);
+ 
+app.use('/api/v2', setupV2Routes(container, userAuth));
+// app.use(
+//   '/api/v2/request', 
+//   setupConnectionRoutes(
+//     container.get('connectionController'),
+//     userAuth
+//   )
+// );
 
-app.use(
-  '/api/v2/user',
-  setupUserRoutes(
-    container.get('connectionController'),
-    userAuth
-  )
-);
+// app.use(
+//   '/api/v2/user',
+//   setupUserRoutes(
+//     container.get('connectionController'),
+//     userAuth
+//   )
+// );
 
 // ============================================
 // OLD ROUTES (Keeping as backup) v1
