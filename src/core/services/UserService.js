@@ -29,6 +29,16 @@ class UserService {
       throw error;
     }
   };
+
+  getFeed = async (req) => {
+    try {
+      const userId = req.user._id;
+      const feed = await this.userRepo.findExcludingIds(userId);
+      return feed;
+    } catch (error) {
+      throw error;
+    }
+  };
   //   login = async (email, password) => {
   //     try {
   //       const user = await this.userRepo.findByEmailWithPassword(email);

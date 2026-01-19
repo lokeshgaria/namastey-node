@@ -45,7 +45,7 @@ class ConnectionRepository extends BaseRepository {
           { toUserId: userId }
         ],
         status: 'accepted'
-      })
+       })
       .populate('fromUserId toUserId', 'firstName lastName photoUrl age skills about');
   }
 

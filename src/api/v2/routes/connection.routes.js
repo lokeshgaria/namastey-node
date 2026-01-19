@@ -24,6 +24,16 @@ function setupConnectionRoutes(connectionController, userAuth) {
     connectionController.reviewRequest  // ✅ Just pass the method
   );
 
+  router.get(
+    '/accepted',
+    userAuth,
+    connectionController.getConnections  // ✅ Just pass the method
+  )
+
+  router.get('/pending',
+    userAuth,
+    connectionController.getPendingRequests  // ✅ Just pass the method
+  )
   return router;
 }
 

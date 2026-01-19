@@ -2,7 +2,7 @@
 // File: src/core/repositories/UserRepository.js
 // ============================================
 const BaseRepository = require('./BaseRepository');
-
+const { USER_SAFE_DATA , PAGINATION } = require("../../config/constants");
 class UserRepository extends BaseRepository {
   constructor(UserModel) {
     super(UserModel);
@@ -35,8 +35,8 @@ class UserRepository extends BaseRepository {
    * @param {Array} excludeIds 
    * @param {Object} options 
    */
-  async findExcludingIds(excludeIds, options = {}) {
-    const { skip = 0, limit = 10, select = null } = options;
+    async findExcludingIds(excludeIds, options = {}) {
+    const { skip = PAGINATION.DEFAULT_PAGE, limit = PAGINATION.DEFAULT_LIMIT, select = USER_SAFE_DATA } = options;
     
     const query = this.model.find({
       _id: { $nin: excludeIds }

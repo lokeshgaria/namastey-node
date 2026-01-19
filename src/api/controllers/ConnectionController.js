@@ -67,7 +67,8 @@ class ConnectionController {
 
       res.status(200).json({
         success: true,
-        data: requests
+          data: requests,
+          count: requests.length
       });
     } catch (error) {
       next(error);
@@ -86,7 +87,8 @@ class ConnectionController {
 
       res.status(200).json({
         success: true,
-        data: connections
+        data: connections,
+        count: connections.length
       });
     } catch (error) {
       next(error);

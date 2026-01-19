@@ -6,6 +6,8 @@ const AuthController = require("../api/controllers/AuthController");
 const AuthService = require("../core/services/AuthService");
 const UserService = require("../core/services/UserService");
 const UserController = require("../api/controllers/UserController");
+const FeedService = require("../core/services/Feedservice");
+const FeedController = require("../api/controllers/FeedController");
 class Container {
   constructor() {
     this.services = {};
@@ -60,6 +62,11 @@ function setupContainer(models) {
     "userService",
     () => new UserService(container.get("userRepository"))
   );
+  container.register(
+    "feedService",
+    () => new FeedService(container.get("connectionRepository"), container.get("userRepository"))
+  );
+
   // ============================================
   // CONTROLLERS
   // ============================================
@@ -74,6 +81,11 @@ function setupContainer(models) {
   container.register(
     "userController",
     () => new UserController(container.get("userService"))
+  );
+
+  container.register(
+    "feedController",
+    () => new FeedController(container.get("feedService"))
   );
 
   return container;
