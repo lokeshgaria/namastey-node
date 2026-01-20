@@ -8,7 +8,7 @@ const { validateProfileEditData } = require('../../validators/authValidators');
  */
 function setupUserRoutes(userController, userAuth) {
   // Get user profile
-  router.get(
+  router.get( 
     '/profile',
     userAuth,
     userController.getUser  // ✅ Just pass the method

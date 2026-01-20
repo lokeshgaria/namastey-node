@@ -10,6 +10,7 @@ const setupV2Routes = require('./api/v2');
 const { User } = require('./model/userSchema'); // user model import v1
 const ConnectionRequest = require('./model/connectionRequest'); // connectionRequest model import v1
 const Chat = require('./model/chat'); // chat model import v2
+const Order = require('./model/Orders'); // order model import v2
 // Infrastructure
 const cache = require('./infrastructure/cache/redis');  // to handle chaching with redis v2 
 
@@ -77,7 +78,7 @@ app.use(cookieParser());  // library called for cookies v1
 // ============================================
 // DEPENDENCY INJECTION SETUP  v2
 // ============================================
-const models = { User, ConnectionRequest, Chat };  // defining the root models object for container setup v2
+const models = { User, ConnectionRequest, Chat, Order };  // defining the root models object for container setup v2
 const container = setupContainer(models, cache);  // passing the models object to container class v2
 
 console.log('container', container)

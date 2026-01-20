@@ -1,6 +1,6 @@
 const express = require("express");
 const { userAuth } = require("../middlewares/auth");
-const { RazorInstance } = require("../utils/razorPay");
+const {  getRazorInstance } = require("../utils/razorPay");
 const { plans } = require("../utils/constants/Orger");
 const { SUCCESS } = require("../utils/constants/Success");
 const { ERRORS } = require("../utils/constants/Errors");
@@ -38,8 +38,8 @@ upgradeRouter.post("/upgrade-plan", userAuth, async (req, res) => {
 
     // USE THIS LINE TO CREATE ORDER
 
-    const rzpOrder = await RazorInstance.orders.create(options);
-
+    // const rzpOrder = await RazorInstance.orders.create(options);
+    const rzpOrder = await getRazorInstance().orders.create(options);
     console.log("rzpOrder", rzpOrder);
     const newOrder = await new OrderSchema({
       userId: req.user._id,
@@ -152,7 +152,7 @@ upgradeRouter.post("/razorpay-webhook", async (req, res) => {
         "Signature mismatch! Check if the Webhook Secret is correct."
       );
       return res.status(400).send("Invalid signature");
-    }
+    } 
 
     // 3. Signature is valid - Extract Event
     const { event, payload } = req.body;

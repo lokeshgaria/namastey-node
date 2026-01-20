@@ -1,6 +1,8 @@
 class ChatController {
     constructor(chatService) {
         this.chatService = chatService;
+
+        console.log('chat controller constructor',chatService)
     }
 
 

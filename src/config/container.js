@@ -11,6 +11,10 @@ const FeedController = require("../api/controllers/FeedController");
 const ChatService = require("../core/services/ChatService");
 const ChatController = require("../api/controllers/ChatController");
 const ChatRepository = require("../core/repositories/ChatRepostory");
+const OrderRepository = require("../core/repositories/OrderRepository");
+const OrderController = require("../api/controllers/OrderController");
+ const OrderService = require("../core/services/OrderService");
+
 class Container {
   constructor() {
     this.services = {};
@@ -46,6 +50,7 @@ function setupContainer(models) {
 
   container.register("userRepository", () => new UserRepository(models.User));
   container.register("chatRepository", () => new ChatRepository(models.Chat));
+  container.register("orderRepository", () => new OrderRepository(models.Order));
   // ============================================
   // SERVICES
   // ============================================
@@ -75,6 +80,11 @@ function setupContainer(models) {
     () => new ChatService(container.get("chatRepository"))
   );
 
+  container.register(
+    "orderService",
+    () => new OrderService(container.get("orderRepository"), container.get("userRepository"))
+  );
+
 
   // ============================================
   // CONTROLLERS
@@ -99,6 +109,11 @@ function setupContainer(models) {
   container.register(
     "chatController",
     () => new ChatController(container.get("chatService"))
+  );
+
+  container.register(
+    "orderController",
+    () => new OrderController(container.get("orderService"))
   );
 
   return container;

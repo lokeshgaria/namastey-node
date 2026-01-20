@@ -1,6 +1,10 @@
-const ERRORS = {
+const ERRORS = { 
     INVALID_CREDENTIALS :"Invalid credentials",
-    INVALID_REQUEST:"Invalid request"
+    INVALID_REQUEST:"Invalid request",
+    ORDER_NOT_FOUND:"Order not found",
+    INVALID_REQUEST_SIGNATURE:"Invalid request signature",
+    USER_NOT_FOUND:"User not found",
+    USER_NOT_PREMIUM:"User not premium",
 }
 
 
