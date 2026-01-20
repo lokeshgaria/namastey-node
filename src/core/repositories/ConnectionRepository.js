@@ -2,7 +2,7 @@ const BaseRepository = require('./BaseRepository');
 
 class ConnectionRepository extends BaseRepository {
   constructor(ConnectionModel) {
-    super(ConnectionModel);
+    super(ConnectionModel); 
     this.model = ConnectionModel;
   }
 

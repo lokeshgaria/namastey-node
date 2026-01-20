@@ -7,9 +7,9 @@ const cookieParser = require("cookie-parser"); // to handle cookies v1
 require("dotenv").config();  // to use envs globally v1 
 const setupV2Routes = require('./api/v2');
 // Models
-const {User} = require('./model/userSchema'); // user model import v1
+const { User } = require('./model/userSchema'); // user model import v1
 const ConnectionRequest = require('./model/connectionRequest'); // connectionRequest model import v1
-
+const Chat = require('./model/chat'); // chat model import v2
 // Infrastructure
 const cache = require('./infrastructure/cache/redis');  // to handle chaching with redis v2 
 
@@ -17,9 +17,6 @@ const cache = require('./infrastructure/cache/redis');  // to handle chaching wi
 const { userAuth } = require('./middlewares/auth');  // to authenticate user token v1
 const errorHandler = require('./api/middlewares/errorHandler');  // to handle errors gloablly v2
 
-// NEW Route setups
-const setupConnectionRoutes = require('./api/v2/routes/connection.routes'); // to handle connection apis v2
-const setupUserRoutes = require('./api/v2/routes/user.routes');  // to handle user related apis v2
 
 // OLD Routes (backup - we'll remove these later)
 const authRouter = require("./routes/auth");   // v1
@@ -80,30 +77,17 @@ app.use(cookieParser());  // library called for cookies v1
 // ============================================
 // DEPENDENCY INJECTION SETUP  v2
 // ============================================
-const models = { User, ConnectionRequest };  // defining the root models object for container setup v2
+const models = { User, ConnectionRequest, Chat };  // defining the root models object for container setup v2
 const container = setupContainer(models, cache);  // passing the models object to container class v2
- 
-console.log('container',container)
+
+console.log('container', container)
 // ============================================
 // NEW ROUTES (Clean Architecture) v2
 // ============================================
- 
-app.use('/api/v2', setupV2Routes(container, userAuth));
-// app.use(
-//   '/api/v2/request', 
-//   setupConnectionRoutes(
-//     container.get('connectionController'),
-//     userAuth
-//   )
-// );
 
-// app.use(
-//   '/api/v2/user',
-//   setupUserRoutes(
-//     container.get('connectionController'),
-//     userAuth
-//   )
-// );
+app.use('/api/v2', setupV2Routes(container, userAuth));
+
+
 
 // ============================================
 // OLD ROUTES (Keeping as backup) v1
