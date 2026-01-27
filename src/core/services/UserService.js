@@ -1,20 +1,41 @@
 class UserService {
-  constructor(userRepository) {
+  constructor(userRepository, cacheService) {
     this.userRepo = userRepository;
+    this.cache = cacheService;
   }
 
-  getUser = async (req) => {
-    try {
-        const userId = req.user._id;
-      const user = await this.userRepo.findByIdSafe(userId);
-      if (!user) {
-        throw new Error("User not found");
-      }
-      return user;
-    } catch (error) {
-      throw error;
+  // getUser = async (req) => {
+  //   try {
+  //       const userId = req.user._id;
+  //     const user = await this.userRepo.findByIdSafe(userId);
+  //     if (!user) {
+  //       throw new Error("User not found");
+  //     }
+  //     return user;
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // };
+
+    /**
+   * Get user profile (with caching)
+   */
+    getUser = async (req) => {
+      const userId = req.user._id;
+      return await this.cache.getUserProfile(
+        userId,
+        async () => {
+          // Fetch from database if not in cache
+          const user = await this.userRepo.findByIdSafe(userId);
+          if (!user) {
+            throw new Error('User not found');
+          }
+          return user.toObject();
+        }
+      );
     }
-  };
+
+    
 
   updateProfile = async (req) => {
     try {

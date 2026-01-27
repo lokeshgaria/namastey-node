@@ -1,9 +1,10 @@
 // Simplified feed.service.js
 const { USER_SAFE_DATA, PAGINATION } = require("../../config/constants");
 class FeedService {
-    constructor(connectionRepo, userRepo) {
+    constructor(connectionRepo, userRepo, cacheService) {
         this.connectionRepo = connectionRepo;
         this.userRepo = userRepo;
+        this.cache = cacheService
     }
 
     getFeed = async (userId, page, limit) => {
@@ -16,7 +17,7 @@ class FeedService {
             const connections = await this.connectionRepo.findAllConnectionsForUser(userId);
 
             // Create set of users to exclude
-            console.log("connections v2", connections.length);
+
             const hideUsersFromFeed = new Set();
             connections.forEach(request => {
                 hideUsersFromFeed.add(request.fromUserId._id.toString());
@@ -32,7 +33,7 @@ class FeedService {
             hideUsersFromFeed.add(userId.toString());
 
             // Get users for feed
-            console.log("hideUsersFromFeed v2", Array.from(hideUsersFromFeed), Array.from(hideUsersFromFeed).length);
+            // console.log("hideUsersFromFeed v2", Array.from(hideUsersFromFeed), Array.from(hideUsersFromFeed).length);
 
             const users = await this.userRepo.findExcludingIds(
                 Array.from(hideUsersFromFeed),
@@ -47,6 +48,13 @@ class FeedService {
         } catch (error) {
             throw error;
         }
+    }
+
+    getFeedChache = async (userId, page, limit) => {
+        return await this.cache.getFeed(userId, page, async () => {
+            const result = await this.getFeed(userId, page, limit);
+            return result;
+        });
     }
 }
 

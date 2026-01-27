@@ -11,7 +11,7 @@ class FeedController {
       const userId = req.user._id;
       const page = parseInt(req.query.page) || PAGINATION.DEFAULT_PAGE;
       const limit = Math.min(parseInt(req.query.limit) || PAGINATION.DEFAULT_LIMIT, PAGINATION.MAX_LIMIT);
-      const feedData = await this.feedService.getFeed(userId, page, limit);
+      const feedData = await this.feedService.getFeedChache(userId, page, limit);
       
       res.status(200).json({
         success: true,

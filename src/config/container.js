@@ -15,6 +15,12 @@ const OrderRepository = require("../core/repositories/OrderRepository");
 const OrderController = require("../api/controllers/OrderController");
  const OrderService = require("../core/services/OrderService");
 
+ // caching service
+ const CacheService = require("../infrastructure/cache/CacheService");
+ const RedisClient = require("../infrastructure/cache/redis");
+ 
+ 
+
 class Container {
   constructor() {
     this.services = {};
@@ -40,6 +46,13 @@ class Container {
 function setupContainer(models) {
   const container = new Container();
 
+
+  // ============================================
+  // CACHE
+  // ============================================
+  const cacheService = new CacheService(RedisClient);
+  container.register('cacheService', () => cacheService);
+
   // ============================================
   // REPOSITORIES
   // ============================================
@@ -51,15 +64,23 @@ function setupContainer(models) {
   container.register("userRepository", () => new UserRepository(models.User));
   container.register("chatRepository", () => new ChatRepository(models.Chat));
   container.register("orderRepository", () => new OrderRepository(models.Order));
+
+
+ 
   // ============================================
   // SERVICES
+  // ============================================
+
+  // ============================================
+  // SERVICES (with cache)
   // ============================================
   container.register(
     "connectionService",
     () =>
       new ConnectionService(
         container.get("connectionRepository"),
-        container.get("userRepository")
+        container.get("userRepository"),
+        cacheService  // ← Inject cache
       )
   );
   container.register(
@@ -68,16 +89,16 @@ function setupContainer(models) {
   );
   container.register(
     "userService",
-    () => new UserService(container.get("userRepository"))
+    () => new UserService(container.get("userRepository"),cacheService)
   );
   container.register(
     "feedService",
-    () => new FeedService(container.get("connectionRepository"), container.get("userRepository"))
+    () => new FeedService(container.get("connectionRepository"), container.get("userRepository"),cacheService)
   );
 
   container.register(
     "chatService",
-    () => new ChatService(container.get("chatRepository"))
+    () => new ChatService(container.get("chatRepository"),cacheService)
   );
 
   container.register(
