@@ -1,7 +1,8 @@
 class ConnectionService {
-  constructor(connectionRepository, userRepository) {
+  constructor(connectionRepository, userRepository , cacheService) {
     this.connectionRepo = connectionRepository;
     this.userRepo = userRepository;
+    this.cacheService=cacheService
   }
 
   /**
@@ -95,6 +96,12 @@ class ConnectionService {
     return requests;
   }
 
+  async getPendingChacheRequest(userId) {
+    return this.cacheService.getUserRequests(userId, async () => {
+      return this.getPendingRequests(userId)
+    })
+  }
+
   /**
    * Get all accepted connections for a user
    * @param {String} userId 
@@ -110,8 +117,13 @@ class ConnectionService {
     });
 
     return connectedUsers;
-  }
+  } 
 
+  async getUserCacheConnection(userId){
+      return await this.cacheService.getUserConnections(userId , async () =>{
+       return this.getUserConnections(userId)
+      })
+  }
   /**
    * Get all connection IDs for a user (for feed filtering)
    * @param {String} userId 

@@ -63,7 +63,7 @@ class ConnectionController {
     try {
       const userId = req.user._id;
 
-      const requests = await this.connectionService.getPendingRequests(userId);
+      const requests = await this.connectionService.getPendingChacheRequest(userId);
 
       res.status(200).json({
         success: true,
@@ -83,7 +83,7 @@ class ConnectionController {
     try {
       const userId = req.user._id.toString();
 
-      const connections = await this.connectionService.getUserConnections(userId);
+      const connections = await this.connectionService.getUserCacheConnection(userId);
 
       res.status(200).json({
         success: true,
@@ -94,6 +94,6 @@ class ConnectionController {
       next(error);
     }
   };
-}
+} 
 
 module.exports = ConnectionController;

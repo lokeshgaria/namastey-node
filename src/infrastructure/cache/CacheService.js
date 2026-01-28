@@ -140,6 +140,8 @@ class CacheService {
       const key = this.keys.userConnections(userId);
       return await this.cacheAside(key, fetchFunction, this.ttl.userConnections);
     }
+
+    
   
     async invalidateUserConnections(userId) {
       const key = this.keys.userConnections(userId);
@@ -168,7 +170,7 @@ class CacheService {
       const key = this.keys.feed(userId, page);
       return await this.cacheAside(key, fetchFunction, this.ttl.feed);
     }
-  
+   
     async invalidateFeed(userId, maxPages = 10) {
       const promises = [];
       for (let page = 1; page <= maxPages; page++) {
