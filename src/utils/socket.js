@@ -70,3 +70,78 @@ const initializeSocket = (server) => {
   });
 };
 module.exports = { initializeSocket };
+
+
+// NEW SOCKET IMPLEMNTATION 
+// const socketIO = require('socket.io');
+// const jwt = require('jsonwebtoken');
+// const User = require('../model/userSchema');
+
+// let io;
+
+// const initializeSocket = (server) => {
+//   io = socketIO(server, {
+//     cors: {
+//       origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+//       credentials: true
+//     }
+//   });
+
+//   // Authentication middleware
+//   io.use(async (socket, next) => {
+//     try {
+//       const token = socket.handshake.auth.token;
+//       if (!token) {
+//         return next(new Error('Authentication error'));
+//       }
+
+//       const decoded = jwt.verify(token, process.env.JWT_ENCODE_KEY);
+//       const user = await User.findById(decoded._id);
+      
+//       if (!user) {
+//         return next(new Error('User not found'));
+//       }
+
+//       socket.userId = user._id.toString();
+//       socket.user = user;
+//       next();
+//     } catch (error) {
+//       next(new Error('Authentication error'));
+//     }
+//   });
+
+//   // Connection event
+//   io.on('connection', (socket) => {
+//     console.log(`User connected: ${socket.userId}`);
+
+//     // Join personal room
+//     socket.join(`user:${socket.userId}`);
+
+//     // Handle chat events
+//     socket.on('message:send', async (data) => {
+//       const { receiverId, content } = data;
+      
+//       // Emit to receiver
+//       io.to(`user:${receiverId}`).emit('message:receive', {
+//         senderId: socket.userId,
+//         content,
+//         timestamp: new Date()
+//       });
+//     });
+
+//     socket.on('disconnect', () => {
+//       console.log(`User disconnected: ${socket.userId}`);
+//     });
+//   });
+
+//   return io;
+// };
+
+// const getIO = () => {
+//   if (!io) {
+//     throw new Error('Socket.io not initialized');
+//   }
+//   return io;
+// };
+
+// module.exports = { initializeSocket, getIO };

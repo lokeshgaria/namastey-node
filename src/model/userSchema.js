@@ -57,7 +57,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  } 
 );
 //always use og function methods not arrow method
 
