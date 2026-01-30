@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "E:\\Dev-LNT-BE\\namastey-node\\logs\\.74a3f62c6d4004180fa7e109eff53d5ec8714d7d-audit.json",
+    "files": [
+        {
+            "date": 1769778232653,
+            "name": "E:\\Dev-LNT-BE\\namastey-node\\logs\\database-2026-01-30.log",
+            "hash": "8cef3f2aeb634bf027cdaa61f3da041e638c1e4183380f583e35c32a599bda13"
+        }
+    ],
+    "hashType": "sha256"
+}
