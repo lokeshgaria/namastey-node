@@ -3,7 +3,7 @@
 const validator = require("validator");
 
 const validateSignupData = (req, res, next) => {
-  const { firstName, lastName, email, password, age } = req.body;
+  const { firstName, lastName, email, password } = req.body;
   const errors = [];
 
   // Validation rules configuration
@@ -96,19 +96,7 @@ const validateSignupData = (req, res, next) => {
         },
       ],
     },
-    {
-      field: "age",
-      value: age,
-      rules: [
-        {
-          check: age === undefined || age === null || age === "",
-          message: "Age is required",
-        },
-        { check: isNaN(Number(age)), message: "Age must be a valid number" },
-        { check: Number(age) < 18, message: "Age must be at least 18" },
-        { check: Number(age) > 100, message: "Age cannot exceed 100" },
-      ],
-    },
+  
   ];
 
   // Run all validations
@@ -141,7 +129,7 @@ const validateSignupData = (req, res, next) => {
     lastName: lastName.trim(),
     email: email.trim().toLowerCase(),
     password: password, // Don't trim password (spaces might be intentional)
-    age: Number(age),
+    
   };
 
   next();
@@ -156,6 +144,7 @@ const validateProfileEditData = (req, res, next) => {
         "skills",
         "photoUrl",
         "gender",
+        "phone"
     ];
     
     const errors = [];

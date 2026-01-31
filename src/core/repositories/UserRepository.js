@@ -79,10 +79,15 @@ class UserRepository extends BaseRepository {
    * Get user with safe fields only
    * @param {String} userId 
    */
+
+  // "gender": "male",
+  // "isPremium": true,
+  // "phone": "9999999999",
+  // "membershipType": "premium"
   async findByIdSafe(userId) {
     return await this.model
       .findById(userId)
-      .select('firstName lastName age photoUrl skills about email');
+      .select('firstName lastName age photoUrl skills about email gender isPremium phone membershipType');
   }
 
   /**

@@ -27,9 +27,9 @@ const Order = require('./model/Orders'); // order model import v2
 const RedisClient = require('./infrastructure/cache/redis');  // to handle chaching with redis v2 
 const setupMetricsRoutes = require('./api/v2/routes/metrics.routes')
 // Middlewares
-const { userAuth } = require('./middlewares/auth');  // to authenticate user token v1
+//const { userAuth } = require('./middlewares/auth');  // to authenticate user token v1
 const errorHandler = require('./api/middlewares/errorHandler');  // to handle errors gloablly v2
-
+const { userAuth } = require('./api/middlewares/auth');  // to authenticate user token v1
 
 // OLD Routes (backup - we'll remove these later)
 const authRouter = require("./routes/auth");   // v1

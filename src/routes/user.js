@@ -1,7 +1,7 @@
 const express = require("express");
 const { SUCCESS } = require("../utils/constants/Success/index");
 const { User } = require("../model/userSchema");
-const { userAuth } = require("../middlewares/auth");
+const { userAuth } = require("../api/middlewares/auth");
 const connectionRequestModel = require("../model/connectionRequest");
 const { ERRORS } = require("../utils/constants/Errors");
 const userRouter = express.Router();

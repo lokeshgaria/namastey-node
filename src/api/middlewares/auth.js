@@ -1,6 +1,7 @@
 // api/middlewares/validators/authValidator.js
 const validator = require('validator');
-
+const jwt = require("jsonwebtoken");
+const { User } = require("../../model/userSchema");
 const validateSignup = (req, res, next) => {
   try {
     const { firstName, lastName, email, password, age } = req.body;
@@ -46,4 +47,30 @@ const validateSignup = (req, res, next) => {
   }
 };
 
-module.exports = { validateSignup };
+const userAuth = async (req, res, next) => {
+
+  try {
+       //Read the token from request cookie
+ const cookies = req.cookies;
+ const { token } = cookies;
+ if(!token){
+  throw new Error("Token is not valid")
+ }
+ //validate the token
+ const decodedObj = await jwt.verify(token, process.env.JWT_ENCODE_KEY);
+ const { _id } = decodedObj;
+
+ //find the username
+ const user =  await User.findById(_id);
+ if (!user) {
+   throw new Error("User not found");
+ }
+ req.user=user
+ next();
+  } catch (error) {
+     res.status(401).send({message:  error.message,success:false})
+  }
+
+};
+
+module.exports = { validateSignup,userAuth };

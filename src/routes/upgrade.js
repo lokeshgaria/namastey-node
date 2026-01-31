@@ -1,5 +1,5 @@
 const express = require("express");
-const { userAuth } = require("../middlewares/auth");
+const { userAuth } = require("../api/middlewares/auth");
 const {  getRazorInstance } = require("../utils/razorPay");
 const { plans } = require("../utils/constants/Orger");
 const { SUCCESS } = require("../utils/constants/Success");
