@@ -55,3 +55,52 @@ console.log("list of users",listOfEmails)
 });
 
 module.exports = { cron };  
+
+// NEW CRON - JOBS //  CODE 
+
+// const cron = require('node-cron');
+// const ConnectionRequest = require('../model/connectionRequest');
+// const User = require('../model/userSchema');
+// const { sendEmail } = require('./sendEmail');
+
+// // Run every day at 9 AM
+// cron.schedule('0 9 * * *', async () => {
+//   try {
+//     console.log('Running daily notification cron...');
+    
+//     // Find all pending interested requests from today
+//     const today = new Date();
+//     today.setHours(0, 0, 0, 0);
+    
+//     const pendingRequests = await ConnectionRequest.find({
+//       status: 'interested',
+//       createdAt: { $gte: today }
+//     }).populate('toUserId', 'email firstName');
+    
+//     // Group by recipient
+//     const emailMap = new Map();
+//     pendingRequests.forEach(req => {
+//       const email = req.toUserId.email;
+//       if (!emailMap.has(email)) {
+//         emailMap.set(email, {
+//           name: req.toUserId.firstName,
+//           count: 0
+//         });
+//       }
+//       emailMap.get(email).count++;
+//     });
+    
+//     // Send emails
+//     for (const [email, data] of emailMap) {
+//       await sendEmail({
+//         to: email,
+//         subject: 'New connection requests on DevTinder!',
+//         body: `Hi ${data.name}, you have ${data.count} new connection request(s)!`
+//       });
+//     }
+    
+//     console.log(`✅ Sent notifications to ${emailMap.size} users`);
+//   } catch (error) {
+//     console.error('Cron job error:', error);
+//   }
+// });

@@ -1,0 +1,78 @@
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:33:52"}
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:34:42"}
+{"environment":"development","level":"info","message":"🚀 Starting DevTinder API...","service":"devtinder-api","timestamp":"2026-01-30 18:34:42"}
+{"environment":"development","error":"CacheService is not defined","level":"error","message":"❌ Failed to start application","service":"devtinder-api","stack":"ReferenceError: CacheService is not defined\n    at initializeApp (E:\\Dev-LNT-BE\\namastey-node\\src\\app.js:116:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2026-01-30 18:34:42"}
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:35:02"}
+{"environment":"development","level":"info","message":"🚀 Starting DevTinder API...","service":"devtinder-api","timestamp":"2026-01-30 18:35:02"}
+{"environment":"development","error":"CacheService is not defined","level":"error","message":"❌ Failed to start application","service":"devtinder-api","stack":"ReferenceError: CacheService is not defined\n    at initializeApp (E:\\Dev-LNT-BE\\namastey-node\\src\\app.js:116:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2026-01-30 18:35:03"}
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:39:36"}
+{"environment":"development","level":"info","message":"🚀 Starting DevTinder API...","service":"devtinder-api","timestamp":"2026-01-30 18:39:37"}
+{"environment":"development","level":"info","message":"✅ Cache service initialized","service":"devtinder-api","timestamp":"2026-01-30 18:39:37"}
+{"environment":"development","level":"info","message":"Database query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:39:38"}
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:44:27"}
+{"environment":"development","level":"info","message":"🚀 Starting DevTinder API...","service":"devtinder-api","timestamp":"2026-01-30 18:44:28"}
+{"environment":"development","level":"info","message":"✅ Cache service initialized","service":"devtinder-api","timestamp":"2026-01-30 18:44:28"}
+{"environment":"development","level":"info","message":"Database query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:44:30"}
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:45:33"}
+{"environment":"development","level":"info","message":"🚀 Starting DevTinder API...","service":"devtinder-api","timestamp":"2026-01-30 18:45:33"}
+{"environment":"development","level":"info","message":"✅ Cache service initialized","service":"devtinder-api","timestamp":"2026-01-30 18:45:33"}
+{"environment":"development","level":"info","message":"Database query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:45:35"}
+{"environment":"development","level":"info","message":"✅ Database connected and query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:45:35"}
+{"environment":"development","level":"info","message":"✅ Dependency injection container ready","service":"devtinder-api","timestamp":"2026-01-30 18:45:35"}
+{"environment":"development","level":"info","message":"✅ Routes registered","service":"devtinder-api","timestamp":"2026-01-30 18:45:35"}
+{"environment":"development","level":"info","message":"🚀 Server running on http://localhost:8080","service":"devtinder-api","timestamp":"2026-01-30 18:45:35"}
+{"environment":"development","level":"info","message":"📊 Health check: http://localhost:8080/api/health","service":"devtinder-api","timestamp":"2026-01-30 18:45:35"}
+{"environment":"development","level":"info","message":"📈 Metrics: http://localhost:8080/api/health/metrics","service":"devtinder-api","timestamp":"2026-01-30 18:45:35"}
+{"cache":{"hitRate":"0%"},"database":{"avgTime":"0ms","queries":0,"slowQueries":0},"environment":"development","level":"info","message":"📊 Application Metrics","requests":{"rps":"0.00","total":0},"service":"devtinder-api","timestamp":"2026-01-30 18:45:35","uptime":"2s"}
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:46:11"}
+{"environment":"development","level":"info","message":"🚀 Starting DevTinder API...","service":"devtinder-api","timestamp":"2026-01-30 18:46:11"}
+{"environment":"development","level":"info","message":"✅ Cache service initialized","service":"devtinder-api","timestamp":"2026-01-30 18:46:11"}
+{"environment":"development","level":"info","message":"Database query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:46:12"}
+{"environment":"development","level":"info","message":"✅ Database connected and query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:46:12"}
+{"environment":"development","level":"info","message":"✅ Dependency injection container ready","service":"devtinder-api","timestamp":"2026-01-30 18:46:12"}
+{"environment":"development","level":"info","message":"✅ Routes registered","service":"devtinder-api","timestamp":"2026-01-30 18:46:12"}
+{"environment":"development","level":"info","message":"🚀 Server running on http://localhost:8080","service":"devtinder-api","timestamp":"2026-01-30 18:46:12"}
+{"environment":"development","level":"info","message":"📊 Health check: http://localhost:8080/api/health","service":"devtinder-api","timestamp":"2026-01-30 18:46:12"}
+{"environment":"development","level":"info","message":"📈 Metrics: http://localhost:8080/api/health/metrics","service":"devtinder-api","timestamp":"2026-01-30 18:46:12"}
+{"cache":{"hitRate":"0%"},"database":{"avgTime":"0ms","queries":0,"slowQueries":0},"environment":"development","level":"info","message":"📊 Application Metrics","requests":{"rps":"NaN","total":0},"service":"devtinder-api","timestamp":"2026-01-30 18:46:12","uptime":"0s"}
+{"environment":"development","level":"info","message":"SIGINT received, shutting down gracefully","service":"devtinder-api","timestamp":"2026-01-30 18:46:15"}
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:46:21"}
+{"environment":"development","level":"info","message":"🚀 Starting DevTinder API...","service":"devtinder-api","timestamp":"2026-01-30 18:46:21"}
+{"environment":"development","level":"info","message":"✅ Cache service initialized","service":"devtinder-api","timestamp":"2026-01-30 18:46:21"}
+{"environment":"development","level":"info","message":"Database query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:46:22"}
+{"environment":"development","level":"info","message":"✅ Database connected and query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:46:22"}
+{"environment":"development","level":"info","message":"✅ Dependency injection container ready","service":"devtinder-api","timestamp":"2026-01-30 18:46:22"}
+{"environment":"development","level":"info","message":"✅ Routes registered","service":"devtinder-api","timestamp":"2026-01-30 18:46:22"}
+{"environment":"development","level":"info","message":"🚀 Server running on http://localhost:8080","service":"devtinder-api","timestamp":"2026-01-30 18:46:22"}
+{"environment":"development","level":"info","message":"📊 Health check: http://localhost:8080/api/health","service":"devtinder-api","timestamp":"2026-01-30 18:46:22"}
+{"environment":"development","level":"info","message":"📈 Metrics: http://localhost:8080/api/health/metrics","service":"devtinder-api","timestamp":"2026-01-30 18:46:22"}
+{"cache":{"hitRate":"0%"},"database":{"avgTime":"0ms","queries":0,"slowQueries":0},"environment":"development","level":"info","message":"📊 Application Metrics","requests":{"rps":"0.00","total":0},"service":"devtinder-api","timestamp":"2026-01-30 18:46:22","uptime":"1s"}
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:46:42"}
+{"environment":"development","level":"info","message":"🚀 Starting DevTinder API...","service":"devtinder-api","timestamp":"2026-01-30 18:46:42"}
+{"environment":"development","level":"info","message":"✅ Cache service initialized","service":"devtinder-api","timestamp":"2026-01-30 18:46:42"}
+{"environment":"development","level":"info","message":"Database query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:46:44"}
+{"environment":"development","level":"info","message":"✅ Database connected and query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:46:44"}
+{"environment":"development","level":"info","message":"✅ Dependency injection container ready","service":"devtinder-api","timestamp":"2026-01-30 18:46:44"}
+{"environment":"development","level":"info","message":"✅ Routes registered","service":"devtinder-api","timestamp":"2026-01-30 18:46:44"}
+{"environment":"development","level":"info","message":"🚀 Server running on http://localhost:8080","service":"devtinder-api","timestamp":"2026-01-30 18:46:44"}
+{"environment":"development","level":"info","message":"📊 Health check: http://localhost:8080/api/health","service":"devtinder-api","timestamp":"2026-01-30 18:46:44"}
+{"environment":"development","level":"info","message":"📈 Metrics: http://localhost:8080/api/health/metrics","service":"devtinder-api","timestamp":"2026-01-30 18:46:44"}
+{"cache":{"hitRate":"0%"},"database":{"avgTime":"0ms","queries":0,"slowQueries":0},"environment":"development","level":"info","message":"📊 Application Metrics","requests":{"rps":"0.00","total":0},"service":"devtinder-api","timestamp":"2026-01-30 18:46:44","uptime":"1s"}
+{"environment":"development","level":"info","logLevel":"info","logsDirectory":"E:\\Dev-LNT-BE\\namastey-node\\logs","message":"Logger initialized","service":"devtinder-api","timestamp":"2026-01-30 18:46:45"}
+{"environment":"development","level":"info","message":"🚀 Starting DevTinder API...","service":"devtinder-api","timestamp":"2026-01-30 18:46:45"}
+{"environment":"development","level":"info","message":"✅ Cache service initialized","service":"devtinder-api","timestamp":"2026-01-30 18:46:45"}
+{"environment":"development","level":"info","message":"Database query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:46:47"}
+{"environment":"development","level":"info","message":"✅ Database connected and query logging enabled","service":"devtinder-api","timestamp":"2026-01-30 18:46:47"}
+{"environment":"development","level":"info","message":"✅ Dependency injection container ready","service":"devtinder-api","timestamp":"2026-01-30 18:46:47"}
+{"environment":"development","level":"info","message":"✅ Routes registered","service":"devtinder-api","timestamp":"2026-01-30 18:46:47"}
+{"environment":"development","level":"info","message":"🚀 Server running on http://localhost:8080","service":"devtinder-api","timestamp":"2026-01-30 18:46:47"}
+{"environment":"development","level":"info","message":"📊 Health check: http://localhost:8080/api/health","service":"devtinder-api","timestamp":"2026-01-30 18:46:47"}
+{"environment":"development","level":"info","message":"📈 Metrics: http://localhost:8080/api/health/metrics","service":"devtinder-api","timestamp":"2026-01-30 18:46:47"}
+{"cache":{"hitRate":"0%"},"database":{"avgTime":"0ms","queries":0,"slowQueries":0},"environment":"development","level":"info","message":"📊 Application Metrics","requests":{"rps":"0.00","total":0},"service":"devtinder-api","timestamp":"2026-01-30 18:46:47","uptime":"1s"}
+{"cache":{"hitRate":"0%"},"database":{"avgTime":"0ms","queries":0,"slowQueries":0},"environment":"development","level":"info","message":"📊 Application Metrics","requests":{"rps":"0.00","total":0},"service":"devtinder-api","timestamp":"2026-01-30 19:07:56","uptime":"21m 11s"}
+{"environment":"development","level":"info","message":"Health check performed","service":"devtinder-api","status":"healthy","timestamp":"2026-01-30 19:09:26"}
+{"environment":"development","level":"info","message":"Health check performed","service":"devtinder-api","status":"healthy","timestamp":"2026-01-30 19:09:49"}
+{"environment":"development","level":"info","message":"Health check performed","service":"devtinder-api","status":"healthy","timestamp":"2026-01-30 19:09:51"}
+{"environment":"development","level":"info","message":"Health check performed","service":"devtinder-api","status":"healthy","timestamp":"2026-01-30 19:10:38"}
+{"cache":{"hitRate":"0%"},"database":{"avgTime":"0ms","queries":0,"slowQueries":0},"environment":"development","level":"info","message":"📊 Application Metrics","requests":{"rps":"0.00","total":5},"service":"devtinder-api","timestamp":"2026-01-30 19:12:56","uptime":"26m 11s"}
+{"environment":"development","level":"info","message":"SIGINT received, shutting down gracefully","service":"devtinder-api","timestamp":"2026-01-30 19:17:55"}

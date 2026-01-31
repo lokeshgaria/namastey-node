@@ -35,3 +35,49 @@ module.exports = {
   validateSingupData,
   validateEditProfileData,
 };
+
+
+// NEW VALIDATION VALIDATIONS
+
+// const validator = require('validator');
+
+// const validateSignupData = (data) => {
+//   const { firstName, lastName, email, password, age } = data;
+  
+//   if (!firstName || firstName.length < 2 || firstName.length > 50) {
+//     throw new Error('First name must be 2-50 characters');
+//   }
+  
+//   if (!validator.isEmail(email)) {
+//     throw new Error('Invalid email address');
+//   }
+  
+//   if (!validator.isStrongPassword(password)) {
+//     throw new Error('Password must be strong (min 8 chars, upper, lower, number, symbol)');
+//   }
+  
+//   if (age < 18 || age > 100) {
+//     throw new Error('Age must be 18-100');
+//   }
+  
+//   return true;
+// };
+
+// const validateProfileEdit = (data) => {
+//   const allowedFields = ['firstName', 'lastName', 'age', 'about', 'skills', 'photoUrl', 'gender'];
+  
+//   const isValidUpdate = Object.keys(data).every(key => 
+//     allowedFields.includes(key)
+//   );
+  
+//   if (!isValidUpdate) {
+//     throw new Error('Invalid fields in update');
+//   }
+  
+//   return true;
+// };
+
+// module.exports = {
+//   validateSignupData,
+//   validateProfileEdit
+// };

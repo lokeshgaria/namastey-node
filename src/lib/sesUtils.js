@@ -39,6 +39,7 @@ export async function checkRuleExists(ruleName, ruleSetName) {
 }
 
 export function createIdentity(identityName) {
+  
   const verifyIdentityCommand = new VerifyEmailIdentityCommand({
     EmailAddress: identityName,
   });
