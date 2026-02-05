@@ -75,3 +75,39 @@ const run = async (subject,message) => {
 
 // snippet-end:[ses.JavaScript.email.sendEmailV3]
 module.exports= { run };
+
+
+// NEW IMPLEMENATION AS PER CLAUDE
+// const sesClient = require('../infrastructure/email/sesClient');
+
+// const sendEmail = async ({ to, subject, body }) => {
+//   const params = {
+//     Source: process.env.FROM_EMAIL || 'noreply@lovnti.in',
+//     Destination: {
+//       ToAddresses: [to]
+//     },
+//     Message: {
+//       Subject: {
+//         Data: subject,
+//         Charset: 'UTF-8'
+//       },
+//       Body: {
+//         Html: {
+//           Data: body,
+//           Charset: 'UTF-8'
+//         }
+//       }
+//     }
+//   };
+
+//   try {
+//     await sesClient.sendEmail(params).promise();
+//     console.log(`✅ Email sent to ${to}`);
+//     return true;
+//   } catch (error) {
+//     console.error(`❌ Email failed to ${to}:`, error);
+//     return false;
+//   }
+// };
+
+// module.exports = { sendEmail };

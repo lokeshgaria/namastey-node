@@ -1,6 +1,6 @@
 const express = require("express");
 const { SUCCESS } = require("../utils/constants/Success/index");
-const { userAuth } = require("../middlewares/auth");
+const { userAuth } = require("../api/middlewares/auth");
 const { validateEditProfileData } = require("../utils/validation");
 const profileRouter = express.Router();
 

@@ -1,7 +1,7 @@
 const express = require("express");
 const { SUCCESS } = require("../utils/constants/Success/index");
 const { User } = require("../model/userSchema");
-const { userAuth } = require("../middlewares/auth");
+const { userAuth } = require("../api/middlewares/auth");
 const connectionRequestModel = require("../model/connectionRequest");
 const { ERRORS } = require("../utils/constants/Errors");
 const userRouter = express.Router();
@@ -21,6 +21,7 @@ userRouter.get("/user/requests/received", userAuth, async (req, res) => {
     res.send({
       message: SUCCESS.DATA_FETCHED,
       data: connectionRequest,
+      count: connectionRequest.length,
       success: true,
     });
   } catch (error) {
@@ -55,6 +56,7 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
       message: SUCCESS.DATA_FETCHED,
       data,
       success: true,
+      count: data.length
     });
   } catch (error) {
     res.status(400).send({
@@ -87,12 +89,14 @@ userRouter.get("/feed", userAuth, async (req, res, next) => {
       .select("fromUserId toUserId");
     //.populate("fromUserId","firstName").populate("toUserId","firstName")
 
+    console.log("connections v1",connectionList.length);
     const hideUsersFromFeed = new Set();
     connectionList.forEach((request) => {
       hideUsersFromFeed.add(request.fromUserId.toString());
       hideUsersFromFeed.add(request.toUserId.toString());
     });
 
+    console.log("hideUsersFromFeed v1",Array.from(hideUsersFromFeed), Array.from(hideUsersFromFeed).length);
     const users = await User.find({
       $and: [
         { _id: { $nin: Array.from(hideUsersFromFeed) } },
@@ -102,7 +106,7 @@ userRouter.get("/feed", userAuth, async (req, res, next) => {
       .select(USER_SAFE_DATA)
       .skip(skipcount)
       .limit(limit);
-    res.send({ data: users, message: SUCCESS.DATA_FETCHED, success: true });
+    res.send({ data: users.sort((a, b) => a.firstName.localeCompare(b.firstName)), message: SUCCESS.DATA_FETCHED, success: true ,count: users.length});
   } catch (error) {
     res.status(400).send({ message: error.message, success: false });
   }
