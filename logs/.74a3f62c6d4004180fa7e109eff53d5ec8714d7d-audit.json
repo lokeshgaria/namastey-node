@@ -14,6 +14,31 @@
             "date": 1769840453598,
             "name": "E:\\Dev-LNT-BE\\namastey-node\\logs\\database-2026-01-31.log",
             "hash": "8bf03cc8f518616820032d1ae4dd6d8c6a4fafbde6dfc6dafa42cb4811e010c7"
+        },
+        {
+            "date": 1770027951435,
+            "name": "E:\\Dev-LNT-BE\\namastey-node\\logs\\database-2026-02-02.log",
+            "hash": "956e4c10bb27989d6cf38edb6dcac334ac8f1df3167e899bc3520da5676f1211"
+        },
+        {
+            "date": 1770112814110,
+            "name": "E:\\Dev-LNT-BE\\namastey-node\\logs\\database-2026-02-03.log",
+            "hash": "ac1f607792870b856935d687b0f4fa2d204840b7fc68daafd1189f58c515793c"
+        },
+        {
+            "date": 1770196398237,
+            "name": "E:\\Dev-LNT-BE\\namastey-node\\logs\\database-2026-02-04.log",
+            "hash": "bda4e42fb8cb728dfe4a5614e5c91baf4df82e3a06a80a1c9e6d898210a0bd97"
+        },
+        {
+            "date": 1770275343394,
+            "name": "E:\\Dev-LNT-BE\\namastey-node\\logs\\database-2026-02-05.log",
+            "hash": "bb89a71838fa24b72e33fb24f36bb059aba0e04dc92322c8f43071b5976269da"
+        },
+        {
+            "date": 1770357850944,
+            "name": "E:\\Dev-LNT-BE\\namastey-node\\logs\\database-2026-02-06.log",
+            "hash": "9b345b3136b27c05e37e8353ad0adc28eab79a434d7010d41da5e7f4061787ca"
         }
     ],
     "hashType": "sha256"
