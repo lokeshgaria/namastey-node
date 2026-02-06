@@ -13,13 +13,16 @@ const ChatController = require("../api/controllers/ChatController");
 const ChatRepository = require("../core/repositories/ChatRepostory");
 const OrderRepository = require("../core/repositories/OrderRepository");
 const OrderController = require("../api/controllers/OrderController");
- const OrderService = require("../core/services/OrderService");
+const OrderService = require("../core/services/OrderService");
 
- // caching service
- const CacheService = require("../infrastructure/cache/CacheService");
- const RedisClient = require("../infrastructure/cache/redis");
- 
- 
+const UploadController = require('../api/controllers/UploadController');
+// const s3Service = require('../infrastructure/storage/S3Service');
+
+// caching service
+const CacheService = require("../infrastructure/cache/CacheService");
+const RedisClient = require("../infrastructure/cache/redis");
+
+
 
 class Container {
   constructor() {
@@ -66,7 +69,7 @@ function setupContainer(models) {
   container.register("orderRepository", () => new OrderRepository(models.Order));
 
 
- 
+
   // ============================================
   // SERVICES
   // ============================================
@@ -89,16 +92,16 @@ function setupContainer(models) {
   );
   container.register(
     "userService",
-    () => new UserService(container.get("userRepository"),cacheService)
+    () => new UserService(container.get("userRepository"), cacheService)
   );
   container.register(
     "feedService",
-    () => new FeedService(container.get("connectionRepository"), container.get("userRepository"),cacheService)
+    () => new FeedService(container.get("connectionRepository"), container.get("userRepository"), cacheService)
   );
 
   container.register(
     "chatService",
-    () => new ChatService(container.get("chatRepository"),cacheService)
+    () => new ChatService(container.get("chatRepository"), cacheService)
   );
 
   container.register(
@@ -135,6 +138,14 @@ function setupContainer(models) {
   container.register(
     "orderController",
     () => new OrderController(container.get("orderService"))
+  );
+
+
+  // Register Upload Controller
+  container.register('uploadController', () =>
+    new UploadController(
+      container.get('userService')
+    )
   );
 
   return container;
