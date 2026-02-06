@@ -5,7 +5,7 @@ const userRoutes = require("./routes/user.routes");
 const feedRoutes = require("./routes/feed.routes");
 const setupChatRoutes = require("./routes/chat.routes");
 const setupOrderRoutes = require("./routes/order.routes");
-
+const setupUploadRoutes = require("./routes/upload.routes")
 function setupV2Routes(container, userAuth) {
   const router = express.Router();
 
@@ -16,13 +16,15 @@ function setupV2Routes(container, userAuth) {
   const feedController = container.get("feedController");
   const chatController = container.get("chatController");
   const orderController = container.get("orderController");
+  const uploadController = container.get("uploadController");
   // Mount connection routes
   router.use("/connections", connectionRoutes(connectionController, userAuth));
-  router.use("/auth", authRoutes(authController, userAuth));  
+  router.use("/auth", authRoutes(authController, userAuth));
   router.use("/user", userRoutes(userController, userAuth));
   router.use("/feed", feedRoutes(feedController, userAuth));
   router.use("/chats", setupChatRoutes(chatController, userAuth));
   router.use("/orders", setupOrderRoutes(orderController, userAuth));
+  router.use("/upload", setupUploadRoutes(uploadController, userAuth));
   // API Documentation with HTML/JSON support
   router.get("/", (req, res) => {
     const baseUrl = `${req.protocol}://${req.get("host")}/api/v2`;
