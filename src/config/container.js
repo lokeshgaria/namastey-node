@@ -69,7 +69,6 @@ function setupContainer(models) {
   container.register("orderRepository", () => new OrderRepository(models.Order));
 
 
-
   // ============================================
   // SERVICES
   // ============================================

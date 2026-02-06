@@ -6,13 +6,11 @@ const { createServer } = require('http');    // for handling sockets for chat v1
 const cors = require('cors');  // to enable cors v1
 const cookieParser = require("cookie-parser"); // to handle cookies v1
 const CacheService = require("./infrastructure/cache/CacheService")
-
 const setupV2Routes = require('./api/v2');
 const mongoose = require('mongoose');
 const metricsCollector = require('./infrastructure/monitoring/MetricsCollector');
 // Routes
 const setupHealthRoutes = require('./api/v2/routes/health.routes');
-
 
 // Logger (import FIRST)
 const logger = require('./infrastructure/logging/logger');
@@ -189,13 +187,11 @@ async function initializeApp() {
     process.exit(1);
   }
 }
-
 // ============================================
 // GRACEFUL SHUTDOWN
 // ============================================
 process.on('SIGTERM', async () => {
   logger.info('SIGTERM received, shutting down gracefully');
-
   // Close server
   server.close(() => {
     logger.info('HTTP server closed');
@@ -204,21 +200,18 @@ process.on('SIGTERM', async () => {
   // Disconnect from services
   await RedisClient.disconnect();
   await mongoose.connection.close();
-
   logger.info('All connections closed, exiting');
   process.exit(0);
 });
 
 process.on('SIGINT', async () => {
   logger.info('SIGINT received, shutting down gracefully');
-
   server.close(() => {
     logger.info('HTTP server closed');
   });
 
   await RedisClient.disconnect();
   await mongoose.connection.close();
-
   logger.info('All connections closed, exiting');
   process.exit(0);
 });
