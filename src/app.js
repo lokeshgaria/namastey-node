@@ -8,14 +8,14 @@ const cookieParser = require("cookie-parser"); // to handle cookies v1
 const CacheService = require("./infrastructure/cache/CacheService")
 const setupV2Routes = require('./api/v2');
 const mongoose = require('mongoose');
-const metricsCollector = require('./infrastructure/monitoring/MetricsCollector');
+ 
 // Routes
 const setupHealthRoutes = require('./api/v2/routes/health.routes');
 
 // Logger (import FIRST)
-const logger = require('./infrastructure/logging/logger');
-const setupQueryLogging = require('./infrastructure/database/queryLogger');
-const requestLogger = require('./api/middlewares/requestLogger');
+ 
+ 
+ 
 const metricsMiddleware = require('./api/middlewares/metricsMiddleware');
 // Models
 const { User } = require('./model/userSchema'); // user model import v1
@@ -57,7 +57,7 @@ const allowedOrigins = [
 // ============================================
 
 // 1. Request logging (FIRST - before any other middleware)
-app.use(requestLogger);
+// app.use(requestLogger);
 
 // 2. Metrics collection
 app.use(metricsMiddleware);
@@ -114,25 +114,25 @@ let cacheService;
 //const container = setupContainer(models);  // passing the models object to container class v2
 async function initializeApp() {
   try {
-    logger.info('🚀 Starting DevTinder API...');
+  
 
     // 1. Connect to Redis
     await RedisClient.connect();
     cacheService = new CacheService(RedisClient);
-    logger.info('✅ Cache service initialized');
+
 
     // 2. Connect to MongoDB
     await connectMongo();
 
     // 3. Setup query logging
-    setupQueryLogging(mongoose);
+    
 
-    logger.info('✅ Database connected and query logging enabled');
+    console.log('✅ Database connected and query logging enabled');
 
     // 4. Setup dependency injection
     const models = { User, ConnectionRequest, Chat, Order };  // defining the root models object for container setup v2
     container = setupContainer(models, RedisClient);
-    logger.info('✅ Dependency injection container ready');
+    console.log('✅ Dependency injection container ready');
 
     // ============================================
     // ROUTES
@@ -160,7 +160,7 @@ async function initializeApp() {
     app.use("/", razorRouter);
     app.use("/", chatRouter);
 
-    logger.info('✅ Routes registered');
+    console.log('✅ Routes registered');
 
     // ============================================
     // ERROR HANDLING (MUST BE LAST)
@@ -171,19 +171,19 @@ async function initializeApp() {
     // START SERVER
     // ============================================
     server.listen(PORT, () => {
-      logger.info(`🚀 Server running on http://localhost:${PORT}`);
-      logger.info(`📊 Health check: http://localhost:${PORT}/api/health`);
-      logger.info(`📈 Metrics: http://localhost:${PORT}/api/health/metrics`);
+      console.log(`🚀 Server running on http://localhost:${PORT}`);
+      console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+      console.log(`📈 Metrics: http://localhost:${PORT}/api/health/metrics`);
 
       // Log initial metrics
-      metricsCollector.logMetrics();
+    
     });
 
   } catch (error) {
-    logger.error('❌ Failed to start application', {
-      error: error.message,
-      stack: error.stack
-    });
+    // logger.error('❌ Failed to start application', {
+    //   error: error.message,
+    //   stack: error.stack
+    // });
     process.exit(1);
   }
 }
@@ -191,50 +191,50 @@ async function initializeApp() {
 // GRACEFUL SHUTDOWN
 // ============================================
 process.on('SIGTERM', async () => {
-  logger.info('SIGTERM received, shutting down gracefully');
+  //logger.info('SIGTERM received, shutting down gracefully');
   // Close server
-  server.close(() => {
-    logger.info('HTTP server closed');
-  });
+  // server.close(() => {
+  //   logger.info('HTTP server closed');
+  // });
 
   // Disconnect from services
   await RedisClient.disconnect();
   await mongoose.connection.close();
-  logger.info('All connections closed, exiting');
+ // logger.info('All connections closed, exiting');
   process.exit(0);
 });
 
 process.on('SIGINT', async () => {
-  logger.info('SIGINT received, shutting down gracefully');
+  // logger.info('SIGINT received, shutting down gracefully');
   server.close(() => {
-    logger.info('HTTP server closed');
+    console.log('HTTP server closed');
   });
 
   await RedisClient.disconnect();
   await mongoose.connection.close();
-  logger.info('All connections closed, exiting');
+  // logger.info('All connections closed, exiting');
   process.exit(0);
 });
 
 // ============================================
 // UNCAUGHT ERRORS (Already handled by Winston)
 // ============================================
-process.on('uncaughtException', (error) => {
-  logger.error('Uncaught Exception', {
-    error: error.message,
-    stack: error.stack
-  });
-  // Winston will log to exceptions.log
-  process.exit(1);
-});
+// process.on('uncaughtException', (error) => {
+//   logger.error('Uncaught Exception', {
+//     error: error.message,
+//     stack: error.stack
+//   });
+//   // Winston will log to exceptions.log
+//   process.exit(1);
+// });
 
-process.on('unhandledRejection', (reason, promise) => {
-  logger.error('Unhandled Rejection', {
-    reason,
-    promise
-  });
-  // Winston will log to rejections.log
-});
+// process.on('unhandledRejection', (reason, promise) => {
+//   logger.error('Unhandled Rejection', {
+//     reason,
+//     promise
+//   });
+//   // Winston will log to rejections.log
+// });
 
 // Start the application
 initializeApp();

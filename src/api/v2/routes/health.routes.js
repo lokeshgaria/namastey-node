@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const metricsCollector = require('../../../infrastructure/monitoring/MetricsCollector');
-const logger = require('../../../infrastructure/logging/logger');
+ 
+ 
 
 /**
  * Setup health check routes
@@ -49,7 +49,7 @@ function setupHealthRoutes(redisClient, cacheService) {
 
     const statusCode = isHealthy ? 200 : 503;
     
-    logger.info('Health check performed', { status: health.status });
+     
     
     res.status(statusCode).json(health);
   });
@@ -124,7 +124,7 @@ function setupHealthRoutes(redisClient, cacheService) {
    * GET /health/metrics - Application metrics
    */
   router.get('/metrics', (req, res) => {
-    const metrics = metricsCollector.getMetrics();
+ 
     
     res.json({
       success: true,
@@ -148,9 +148,9 @@ function setupHealthRoutes(redisClient, cacheService) {
    * POST /health/metrics/reset - Reset metrics
    */
   router.post('/metrics/reset', (req, res) => {
-    metricsCollector.reset();
+   
     
-    logger.info('Metrics manually reset');
+  
     
     res.json({
       success: true,

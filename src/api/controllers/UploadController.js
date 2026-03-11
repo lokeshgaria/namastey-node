@@ -1,7 +1,7 @@
 // controller
 const imageService = require('../../core/services/ImageService');
 const s3Service = require('../../infrastructure/storage/s3Client');
-const logger = require('../../infrastructure/logging/logger');
+ 
 
 class UploadController {
     constructor(userService) {
@@ -52,12 +52,7 @@ class UploadController {
                 });
             }
 
-            logger.info('Profile photo upload started', {
-                userId,
-                originalName: req.file.originalname,
-                size: req.file.size,
-                mimetype: req.file.mimetype
-            });
+           
 
             // 1. Validate image
             console.log('✅ Validating image...');
@@ -102,10 +97,7 @@ class UploadController {
             await this.userService.updateProfile(req);
             console.log('✅ Database updated');
 
-            logger.info('Profile photo uploaded successfully', {
-                userId,
-                photoUrl: uploadedImages.photoUrl
-            });
+         
 
             res.json({
                 success: true,
@@ -118,11 +110,7 @@ class UploadController {
 
         } catch (error) {
             console.error('❌ Upload error:', error);
-            logger.error('Profile photo upload failed', {
-                userId: req.user?._id,
-                error: error.message,
-                stack: error.stack
-            });
+         
 
             res.status(500).json({
                 success: false,
@@ -146,7 +134,7 @@ class UploadController {
                 thumbnailUrl: null
             });
 
-            logger.info('Profile photo deleted', { userId });
+           
 
             res.json({
                 success: true,
@@ -154,10 +142,7 @@ class UploadController {
             });
 
         } catch (error) {
-            logger.error('Profile photo deletion failed', {
-                userId: req.user._id,
-                error: error.message
-            });
+            
             next(error);
         }
     };
