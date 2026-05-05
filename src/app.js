@@ -59,7 +59,7 @@ const allowedOrigins = [
 // 1. Request logging (FIRST - before any other middleware)
 // app.use(requestLogger);
 
-// 2. Metrics collection
+// 2. Metrics collectionc
 app.use(metricsMiddleware);
 // 3. Body parsing | Raw body for webhooks v1
 app.use(express.json({
@@ -117,8 +117,8 @@ async function initializeApp() {
   
 
     // 1. Connect to Redis
-    await RedisClient.connect();
-    cacheService = new CacheService(RedisClient);
+    // await RedisClient.connect();
+    // cacheService = new CacheService(RedisClient);
 
 
     // 2. Connect to MongoDB

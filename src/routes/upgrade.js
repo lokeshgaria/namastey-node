@@ -13,7 +13,7 @@ const { User } = require("../model/userSchema"); // Import your User model
 const upgradeRouter = express.Router();
 const crypto = require("crypto");
 
-// upgrade-plan
+// upgrade-planc
 upgradeRouter.post("/upgrade-plan", userAuth, async (req, res) => {
   const { notes } = req.body;
 
