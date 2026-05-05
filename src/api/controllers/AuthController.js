@@ -24,7 +24,9 @@ class AuthController {
         message: "Login successful",
       });
     } catch (error) {
+      
       next(error);
+      
     }
   };
   logout = async (req, res, next) => {
