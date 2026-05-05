@@ -15,7 +15,7 @@ const initializeSocket = (server) => {
       const roomExists = io.sockets.adapter.rooms.has(room);
 
       console.log(`${userName} has joined the room ${room}`);
-      socket.join(room); // Always join
+      socket.join(room); // Always join 
       socket.emit("room-joined", {
         message: `${userName} has joined the room ${room}`,
       });
