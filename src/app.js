@@ -40,7 +40,7 @@ const razorRouter = require("./routes/upgrade");     // v1
 
 const { initializeSocket } = require('./utils/socket');    // imported socket intiliaze methos v1
 
-const PORT = process.env.PORT || 3000;     // defining PORT v1
+const PORT = process.env.PORT || 8080;     // defining PORT v1
 const app = express();   // INITIALIZING APP v1
 const server = createServer(app);  // intializing server v1
 
