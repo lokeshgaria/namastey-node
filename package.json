@@ -9,6 +9,12 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:unit": "cross-env NODE_ENV=test jest test/unit",
+    "test:integration": "cross-env NODE_ENV=test jest test/integration",
+    "test:e2e": "cross-env NODE_ENV=test jest test/e2e",
+    "test:verbose": "cross-env NODE_ENV=test jest --verbose",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
     "format": "prettier --write \"src/**/*.js\"",
