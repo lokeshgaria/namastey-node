@@ -108,14 +108,14 @@ initializeSocket(server)
 // INITIALIZE SERVICES
 // ============================================
 let container
-// let cacheService
+let cacheService
 
 //const container = setupContainer(models);  // passing the models object to container class v2
 async function initializeApp() {
   try {
     // 1. Connect to Redis
-    // await RedisClient.connect();
-    // cacheService = new CacheService(RedisClient);
+    await RedisClient.connect()
+    cacheService = new CacheService(RedisClient)
 
     // 2. Connect to MongoDB
     await connectMongo()
@@ -135,7 +135,7 @@ async function initializeApp() {
     // ============================================
 
     // Health check routes (public)
-    //app.use('/api/health', setupHealthRoutes(RedisClient, cacheService))
+    app.use('/api/health', setupHealthRoutes(RedisClient, cacheService))
 
     // NEW Architecture routes
     // ============================================
@@ -178,6 +178,7 @@ async function initializeApp() {
     //   error: error.message,
     //   stack: error.stack
     // });
+    console.log('error', error)
     process.exit(1)
   }
 }
