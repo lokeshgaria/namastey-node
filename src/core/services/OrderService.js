@@ -8,9 +8,10 @@ const { ERRORS } = require('../../utils/constants/Errors')
 const { SUCCESS } = require('../../utils/constants/Success')
 
 class OrderService {
-  constructor(orderRepository, userRepository) {
+  constructor(orderRepository, userRepository, cacheService) {
     this.orderRepository = orderRepository
     this.userRepository = userRepository
+    this.cache = cacheService
   }
 
   async createOrder(orderData) {
@@ -58,6 +59,7 @@ class OrderService {
       isPremium: true,
       membershipType: updatedOrder.notes.plan_name,
     })
+    await this.cache.invalidateUserProfile(user._id)
     return {
       order: updatedOrder,
       user: user,
@@ -123,7 +125,7 @@ class OrderService {
           isPremium: true,
           membershipType: order.notes.plan_name,
         })
-
+        await this.cache.invalidateUserProfile(order.userId)
         console.log(`[SUCCESS] Webhook processed for Order: ${orderId}`)
       }
     }

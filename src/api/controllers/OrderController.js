@@ -68,8 +68,8 @@ class OrderController {
 
   webhookHandler = async (req, res, next) => {
     try {
-      const webhookData = req.body
-      await this.orderService.handleWebhook(webhookData)
+      // const webhookData = req.body
+      await this.orderService.handleWebhook(req, res)
       res.sendStatus(200) // Acknowledge receipt of the webhook
     } catch (error) {
       next(error)
