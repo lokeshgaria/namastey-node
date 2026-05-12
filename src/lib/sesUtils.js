@@ -41,6 +41,26 @@ async function sendFailureEmailTemplated(emailUser, errorDesc, orderId) {
   }
 }
 
+async function sendSuccessEmailTemplated(emailUser, errorDesc, orderId) {
+  const sendTemplatedEmailCommand = new SendTemplatedEmailCommand({
+    Source: 'noreply@lovnti.in',
+    Destination: {
+      ToAddresses: [emailUser.email],
+    },
+    Template: 'PaymentSuccessTemplate',
+    TemplateData: JSON.stringify({
+      errorDesc,
+      orderId,
+      retryLink: `/retry-payment/${orderId}`,
+    }),
+  })
+
+  try {
+    return await sesClient.send(sendTemplatedEmailCommand)
+  } catch (err) {
+    console.error(`[EMAIL FAILED] Templated email failed for userId ${emailUser.id}:`, err.message)
+  }
+}
 async function checkRuleExists(ruleName, ruleSetName) {
   const describeReceiptRuleCommand = new DescribeReceiptRuleCommand({
     RuleName: ruleName,
@@ -162,4 +182,5 @@ module.exports = {
   findReceiptFilter,
   findReceiptRuleSet,
   getTemplate,
+  sendSuccessEmailTemplated,
 }
