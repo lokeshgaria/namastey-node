@@ -182,9 +182,9 @@ async function initializeApp() {
     process.exit(1)
   }
 }
-// ============================================
+// ==========================================
 // GRACEFUL SHUTDOWN
-// ============================================
+// ==========================================
 process.on('SIGTERM', async () => {
   //logger.info('SIGTERM received, shutting down gracefully');
   // Close server
