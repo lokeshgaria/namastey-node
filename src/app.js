@@ -29,12 +29,6 @@ const errorHandler = require('./api/middlewares/errorHandler') // to handle erro
 const { userAuth } = require('./api/middlewares/auth') // to authenticate user token v1
 
 // OLD Routes (backup - we'll remove these later)
-const authRouter = require('./routes/auth') // v1
-const userRouter = require('./routes/user') // v1
-const profileRouter = require('./routes/profile') // v1
-const requestRouter = require('./routes/request') // v1
-const chatRouter = require('./routes/chat') // v1
-const razorRouter = require('./routes/upgrade') // v1
 
 const { initializeSocket } = require('./utils/socket') // imported socket intiliaze methos v1
 
@@ -149,12 +143,6 @@ async function initializeApp() {
     // ============================================
     // OLD ROUTES (Keeping as backup) v1
     // ============================================
-    app.use('/', authRouter)
-    app.use('/', userRouter)
-    app.use('/', profileRouter)
-    app.use('/', requestRouter)
-    app.use('/', razorRouter)
-    app.use('/', chatRouter)
 
     console.log('✅ Routes registered')
 
