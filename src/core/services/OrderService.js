@@ -158,7 +158,7 @@ class OrderService {
     }
 
     // ✅ Only ONE response at the end — no duplicates
-    return res.sendStatus(200)
+    //return res.sendStatus(200)
   }
 }
 module.exports = OrderService
