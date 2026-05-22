@@ -3,46 +3,44 @@
 
 class AuthController {
   constructor(authService) {
-    this.authService = authService;
+    this.authService = authService
   }
 
   login = async (req, res, next) => {
     try {
-      const { email, password } = req.body;
+      const { email, password } = req.body
 
-      const user = await this.authService.login(email, password);
+      const user = await this.authService.login(email, password)
 
       // set http-only cookie
-      res.cookie("token", await user.getJWT(), {
+      res.cookie('token', await user.getJWT(), {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      });
+      })
       res.status(200).json({
         success: true,
         data: user,
-        message: "Login successful",
-      });
+        message: 'Login successful',
+      })
     } catch (error) {
-      
-      next(error);
-      
+      next(error)
     }
-  };
+  }
   logout = async (req, res, next) => {
     try {
-        res.cookie("token",null,{
-            expires: new Date(Date.now())
-        })
-      res.json({ success: true, message: "Logout successfull" });
+      res.cookie('token', null, {
+        expires: new Date(Date.now()),
+      })
+      res.json({ success: true, message: 'Logout successfull' })
     } catch (error) {
-      next(error);
+      next(error)
     }
-  };
+  }
 
   signup = async (req, res, next) => {
     try {
-      const { firstName, lastName, email, age, gender, password } = req.body;
+      const { firstName, lastName, email, age, gender, password } = req.body
 
       const AddUser = await this.authService.signup(
         firstName,
@@ -50,17 +48,17 @@ class AuthController {
         email,
         age,
         gender,
-        password
-      );
+        password,
+      )
       res.status(201).json({
         success: true,
         data: AddUser,
-        mesage: "New user added successfully",
-      });
+        message: 'New user added successfully',
+      })
     } catch (error) {
-      next(error);
+      next(error)
     }
-  };
+  }
 }
 
-module.exports = AuthController;
+module.exports = AuthController
