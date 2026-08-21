@@ -42,7 +42,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://13.60.188.185',
   'https://lovnti.in',
-  'https://www.lovnti.in
+  'https://www.lovnti.in'
 ]
 
 // ============================================
