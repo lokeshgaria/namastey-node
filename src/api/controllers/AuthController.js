@@ -14,10 +14,12 @@ class AuthController {
 
       // set http-only cookie
       res.cookie('token', await user.getJWT(), {
-        httpOnly:false,
-        secure: process.env.NODE_ENV === 'production',
+         httpOnly: true,        // put this back
+  secure: true,
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        sameSite: 'none',    
       })
+ 
       res.status(200).json({
         success: true,
         data: user,
