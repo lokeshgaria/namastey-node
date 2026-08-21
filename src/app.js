@@ -38,6 +38,7 @@ const server = createServer(app) // intializing server v1
 
 // allowed CORs v1
 const allowedOrigins = [
+  'https://dev-tinder-node-ten.vercel.app,
   'http://localhost:5173',
   'http://localhost:3000',
   'http://13.60.188.185',
