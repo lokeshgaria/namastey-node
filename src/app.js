@@ -222,5 +222,11 @@ process.on('SIGINT', async () => {
 
 // Start the application
 initializeApp()
-
+// Only listen locally — Vercel serverless has no port to bind to
+if (process.env.NODE_ENV !== 'production') {
+  server.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`)
+    console.log(`📊 Health check: http://localhost:${PORT}/api/health`)
+  })
+}
 module.exports = app
